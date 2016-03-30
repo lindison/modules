@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+#/ command: docker:start-splunk: "start the splunk container"
+#/ usage: rerun docker:start-splunk [options]
+#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
+#/ option-variables:
+
+. $RERUN_MODULE_DIR/lib/functions.sh start-splunk || {
+  echo >&2 "Failed loading function library." ; exit 1 ;
+}
+
+set -o errexit -o nounset -o pipefail
+
+rerun_options_parse "$@"
+
+# Command implementation
+# ----------------------
+
+docker run --hostname splunk --name splunk --volumes-from=vsplunk -p 8000:8000 -d outcoldman/splunk:6.3.3
+
+# - - -
+# Put the command implementation here.
+# - - -
+
+# Done. Exit with last command exit status.
+exit $?
+

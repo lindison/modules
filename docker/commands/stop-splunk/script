@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+#/ command: docker:stop-splunk: "stop the splunk container"
+#/ usage: rerun docker:stop-splunk [options]
+#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
+#/ option-variables:
+
+. $RERUN_MODULE_DIR/lib/functions.sh stop-splunk || {
+  echo >&2 "Failed loading function library." ; exit 1 ;
+}
+
+set -o errexit -o nounset -o pipefail
+
+rerun_options_parse "$@"
+
+# Command implementation
+# ----------------------
+
+docker halt splunk
+
+# - - -
+# Put the command implementation here.
+# - - -
+
+# Done. Exit with last command exit status.
+exit $?
+

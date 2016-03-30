@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='content-type' content='text/html;charset=utf-8'>
+    <title>startsplunk</title>
+    <link rel="stylesheet" media="all" href="http://jashkenas.github.io/docco/resources/linear/public/stylesheets/normalize.css" />
+    <link rel="stylesheet" media="all" href="http://jashkenas.github.io/docco/resources/linear/docco.css" />
+</head>
+<body>
+<div class="container">
+  <div class="page">
+        <div class="header"><h1>startsplunk</h1></div>
+        <h2>Command implementation</h2>
+
+<span></span><span class="c1"># DIVIDER</span>
+<span class="c1">#!/usr/bin/env bash</span>
+
+<span class="c1">#/ command: docker:startsplunk: &quot;Starts Splunk container&quot;</span>
+<span class="c1">#/ usage: rerun docker:startsplunk [options]</span>
+<span class="c1">#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR</span>
+<span class="c1">#/ option-variables:</span>
+
+. <span class="nv">$RERUN_MODULE_DIR</span>/lib/functions.sh startsplunk <span class="o">||</span> <span class="o">{</span>
+<span class="nb">echo</span> &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;Failed loading function library.&quot;</span> <span class="p">;</span> <span class="nb">exit</span> <span class="m">1</span> <span class="p">;</span>
+<span class="o">}</span>
+
+<span class="nb">set</span> -o errexit -o nounset -o pipefail
+
+rerun_options_parse <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+
+
+docker run --hostname splunk --name splunk --volumes-from<span class="o">=</span>vsplunk -p 8000:8000 -d outcoldman/splunk:6.3.3
+
+
+<span class="c1"># DIVIDER</span>
+
+<span class="c1"># DIVIDER</span>
+<span class="nb">exit</span> <span class="nv">$?</span>
+
+
+
+<span class="c1"># DIVIDER</span>
+
+</pre></div>
+
+<hr />
+
+<p>Put the command implementation here.</p>
+
+<hr />
+
+</pre></div>
+
+<p>Done. Exit with last command exit status.</p>
+
+</pre></div>
+
+</pre></div>
+</pre></div>
+  </div>
+  <div class="fleur">h</div>
+
+</div>
+</body>
+</html>

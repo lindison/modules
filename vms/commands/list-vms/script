@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+#/ command: vms:list-vms: "list vms"
+#/ usage: rerun vms:list-vms [options]
+#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
+#/ option-variables:
+
+. $RERUN_MODULE_DIR/lib/functions.sh list-vms || {
+  echo >&2 "Failed loading function library." ; exit 1 ;
+}
+
+set -o errexit -o nounset -o pipefail
+
+rerun_options_parse "$@"
+
+# Command implementation
+# ----------------------
+
+ECHO "Running VirtualBox VMs"
+vboxmanage list runningvms
+
+ECHO "All VirtualBox VMs"
+vboxmanage list vms
+
+ECHO "All Vagrant VMs"
+vagrant global-status
+
+ECHO "Free Memory"
+python ~/memReport.py
+
+# - - -
+# Put the command implementation here.
+# - - -
+
+# Done. Exit with last command exit status.
+exit $?
+

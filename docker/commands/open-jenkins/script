@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+#/ command: docker:open-jenkins: "open Jenkins in a web browser"
+#/ usage: rerun docker:open-jenkins [options]
+#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
+#/ option-variables:
+
+. $RERUN_MODULE_DIR/lib/functions.sh open-jenkins || {
+  echo >&2 "Failed loading function library." ; exit 1 ;
+}
+
+set -o errexit -o nounset -o pipefail
+
+rerun_options_parse "$@"
+
+# Command implementation
+# ----------------------
+
+open http://192.168.99.100:8080
+
+# - - -
+# Put the command implementation here.
+# - - -
+
+# Done. Exit with last command exit status.
+exit $?
+
