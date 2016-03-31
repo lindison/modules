@@ -1,8 +1,0 @@
-* [apps-1](tests/apps-1.html)
-* [delete-1](tests/delete-1.html)
-* [deleteallnotrunnig-1](tests/deleteallnotrunnig-1.html)
-* [get-ssh-key-1](tests/get-ssh-key-1.html)
-* [jobs-1](tests/jobs-1.html)
-* [start-1](tests/start-1.html)
-* [stop-1](tests/stop-1.html)
-* [wait-1](tests/wait-1.html)
