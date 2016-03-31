@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+# To implement this command, edit the "Command implementation" section below. 
+
+# Usage
+# -----
+
+# Comments prefixed with `#/` are managed by stubbs.
+# The `command` and `usage` comments describe the command
+# and show its options.
+# 
+#/ command: cliqrapp:jobs: "list jobs runing"
+#/ usage: rerun cliqrapp:jobs [ --env_name <>] [ --appid <>] [ --quiet <no>] [ --status <active>] [ --getipfornode <>] [ --id <>] 
+
+# Load common functions
+# ---------------------
+
+# Load the function library for this module.
+# This loads rerun functions, too.
+. $RERUN_MODULE_DIR/lib/functions.sh jobs || { 
+  echo >&2 "Failed loading function library." ; exit 1 ; 
+}
+
+# Error handling
+# ---------------
+
+# This script is designed to _fail-fast_.
+
+# Trap errors and exit. The call to `rerun_die` will print the
+# the error message and exit with the error command exit status. 
+
+trap 'rerun_die $? "*** command failed: cliqrapp:jobs. ***"' ERR
+
+# Run [set] `nounset` to treat unset variables as errors. Set [pipefail]
+# so a pipeline return status is the value of the last 
+# (rightmost) command to exit with non-zero status.
+#
+# [set]: http://ss64.com/bash/set.html
+# [pipefail]: http://www.gnu.org/software/bash/manual/html_node/Pipelines.html
+
+set -o nounset -o pipefail
+
+# Command variables
+# -----------------
+
+# This command script can access the following variables
+# declared by `rerun` or by the option parser function.
+
+#/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
+#/ option-variables: ENV_NAME APPID QUIET STATUS GETIPFORNODE ID
+
+# The `rerun_options_parse` function processes the command line
+# arguments. Each accepted command line flag results in setting 
+# one the corresponding option variables.
+
+rerun_options_parse "$@"
+
+
+# Command implementation
+# ----------------------
+#'.jobs[] | select( .status == "JobRunning" )| {status}'
+# "status": "JobCanceled", "status": "JobError", "status": "JobRunning", "status": "JobStarting", "status": "JobStopped",
+test -f ~/.cliqr.env && . ~/.cliqr.env
+if [ X$ID != X ]
+then 
+	export url="https://$SERVER/v1/jobs/$ID"
+        CRITERIA=" . "
+else
+        export CRITERIA=" .jobs[] | select( "
+	export url="https://$SERVER/v1/jobs/"
+fi
+
+case X$STATUS in
+Xactive)
+	test X$ID = X && CRITERIA="$CRITERIA ( .status == \"Starting\" or .status == \"Running\" ) and"
+	;;
+Xall)
+	echo ALL STATUSes very slow >&2
+	test X$ID = X && CRITERIA="$CRITERIA .status != \"Fred\" and"
+	;;
+*)
+	test X$ID = X && CRITERIA="$CRITERIA .status == \"$STATUS\" and"	
+	;;
+esac
+
+test X$APPID  != X && CRITERIA="$CRITERIA .appId == \"$APPID\" and"
+
+export CRITERIA=`echo $CRITERIA|sed s/and$/\)/`
+#test $QUIET = no && echo $CRITERIA >&2
+mkdir -p /tmp/cliqr.jobs.$$
+export JOBSFILE=/tmp/cliqr.jobs.$$/Jobs
+curl -sS -k -X GET -u $API_USER:$API_PASSWORD -H "Content-Type: application/json" $url|jq . >$JOBSFILE
+ENV_FOUND=no
+echo CRITERIA=$CRITERIA >&2
+for ID in `jq -r " $CRITERIA | .id" <$JOBSFILE|sort -n -r`
+do
+        export JOBFILE=/tmp/cliqr.jobs.$$/$ID
+        curl -sS -k -X GET -u $API_USER:$API_PASSWORD -H "Content-Type: application/json" https://$SERVER/v1/jobs/${ID} |jq . >$JOBFILE
+	ENVV=`cat $JOBFILE|jq -r '.parameters.appParams[]|select(.name == "ENV_NAME").value' `
+        test $QUIET = no && cat $JOBFILE|jq -r '.jobs[].virtualMachines[]|select(.id)'
+        test $QUIET = no && echo `jq -c " $CRITERIA | {status,id,name,appName,appId}" <$JOBSFILE|grep "\"id\":\"$ID\""|sed s/\}/,\"env_name\":\"/`$ENVV\"\}
+
+	if [ X$ENVV = X$ENV_NAME -a X${APPID:=} != X ]
+	then
+		test X$GETIPFORNODE = X && echo found $ID $ENVV in $JOBFILE
+		break
+        fi	
+done
+IPS=""
+if [ X$GETIPFORNODE != X ]
+then 
+        export NODECRITERIA=".jobs[] | select(.appName == \"${GETIPFORNODE}\") | .virtualMachines[].privateIp"
+        for ip in `jq -r "$NODECRITERIA" $JOBFILE`
+	do
+		IP=`dig -x $ip +short| sed 's/\.$//'`
+		IPS=$IPS,$IP
+
+	done
+	echo $IPS|sed s/^,//
+fi
+
+
+
+#echo ${jobs[@]} | jq --compact-output .
+#jq /tmp/jobs.$$.json
+#rm /tmp/jobs.$$.json
+#test X$ID != X && curl -sS -k -X GET -u $API_USER:$API_PASSWORD -H "Content-Type: application/json" https://$SERVER/v1/jobs/${ID}|jq --slurp . >/tmp/json.out.$$.2
+#test X$ID != X && echo cat /tmp/json.out.$$.2 
+# Done. Exit with last command exit status.
+exit $?
+

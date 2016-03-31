@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#/ command: vms:list-vms: "list vms"
-#/ usage: rerun vms:list-vms [options]
+#/ command: vms:init-alpine: "init Vagrantfile for alpine linux"
+#/ usage: rerun vms:init-alpine [options]
 #/ rerun-variables: RERUN, RERUN_VERSION, RERUN_MODULES, RERUN_MODULE_DIR
 #/ option-variables:
 
-. $RERUN_MODULE_DIR/lib/functions.sh list-vms || {
+. $RERUN_MODULE_DIR/lib/functions.sh init-alpine || {
   echo >&2 "Failed loading function library." ; exit 1 ;
 }
 
@@ -16,20 +16,7 @@ rerun_options_parse "$@"
 # Command implementation
 # ----------------------
 
-ECHO "Running VirtualBox VMs"
-vboxmanage list runningvms
-
-ECHO " "
-ECHO "All VirtualBox VMs"
-vboxmanage list vms
-
-ECHO " "
-ECHO "All Vagrant VMs"
-vagrant global-status
-
-ECHO " "
-ECHO "Free Memory"
-python ~/memReport.py
+vagrant init maier/alpine-3.1.3-x86_64
 
 # - - -
 # Put the command implementation here.

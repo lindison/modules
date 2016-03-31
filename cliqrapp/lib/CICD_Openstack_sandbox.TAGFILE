@@ -1,0 +1,32 @@
+"cloudParams": {
+      "cloud": "CICD_Openstack_Sandbox-one",
+      "instance": "STTYPE",
+      "rootVolumeSize": null,
+      "storage": null,
+      "cloudProperties": [
+            {
+              "name": "TenantId",
+              "value": "72c4105ec6754a3483c3943e3a00a488"
+            },
+            {
+              "name": "nicInfo",
+              "value": "[{\"privateIPAllocationMode\":\"DHCP\",\"nicNetworkType\":\"NETWORK\",\"networkID\":\"b04bdfe5-d992-4f60-a4e5-8620b5cc9c83\",\"order\":1,\"publicIpAllocate\":true}]"
+            },
+            {
+              "name": "Network_1",
+              "value": "b04bdfe5-d992-4f60-a4e5-8620b5cc9c83"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "subnetId",
+              "value": "b04bdfe5-d992-4f60-a4e5-8620b5cc9c83"
+            },
+            {
+              "name": "numNICs",
+              "value": "1"
+            }
+          ]
+        }

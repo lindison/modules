@@ -1,0 +1,18 @@
+"cloudParams":{
+                                  "cloud":"DTV_AWS_DevPI-us-west-2",
+                                  "instance":"STTYPE",
+                                  "cloudProperties":[
+                                         {
+                                                "name":"attachPublicIP",
+                                                "value":"false"
+                                         },
+                                         {
+                                                "name":"vpcId",
+                                                "value":"vpc-82a873e7"
+                                         },
+                                         {
+                                                "name":"subnetId",
+                                                "value":"subnet-f1fa3da8"
+                                         }
+                                  ]
+                           }

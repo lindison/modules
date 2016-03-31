@@ -1,0 +1,23 @@
+"cloudParams": {
+          "cloud": "DTV_VMWARE_VA_POP-01",
+          "instance":"STTYPE",
+          "cloudProperties": [
+            {
+              "name": "UserClusterName",
+              "value": "DCCB-CLOUD-VAP-03"
+            },
+            {
+              "name": "Network",
+              "value": "dvPort-vlan19-DMZ-Data-External (dvSwitch1)"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "UserDataCenterName",
+              "value": "VA-POP-CLOUD"
+            }
+          ]
+        }
+

@@ -1,0 +1,26 @@
+"cloudParams": {
+          "cloud": "DTV_VMware_PIPOP-MSDC_PI",
+          "instance":"STTYPE",
+          "cloudProperties": [
+            {
+              "name": "UserClusterName",
+              "value": "PI-DCCB"
+            },
+            {
+              "name": "Network",
+              "value": "dvS0-DCCB-PI-vlan2917-VMs (dvSwitch0-MAIN-DCCB-PI)"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "UserDataCenterName",
+              "value": "MSDC-PICloud"
+            },
+            {
+              "name": "UserDatastoreCluster",
+              "value": "DCCB_DSC_PI"
+            }
+          ]
+        }

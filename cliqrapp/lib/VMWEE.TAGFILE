@@ -1,0 +1,23 @@
+"cloudParams": {
+          "cloud": "DTV_VMware_EEPOP-MSDC",
+          "instance":"STTYPE",
+          "cloudProperties": [
+            {
+              "name": "UserClusterName",
+              "value": "EE-POP-2-DCCB"
+            },
+            {
+              "name": "Network",
+              "value": "dvS0-EE-POP-vlan2707-vms-default (dvSwitch0-EE-POP)"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "UserDataCenterName",
+              "value": "MSDC-Cloud"
+            }
+          ]
+        }
+

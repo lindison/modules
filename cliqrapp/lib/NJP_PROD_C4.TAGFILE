@@ -1,0 +1,23 @@
+"cloudParams": {
+          "cloud": "DTV_VMWARE_NJ_POP-01",
+          "instance":"STTYPE",
+          "cloudProperties": [
+            {
+              "name": "UserClusterName",
+              "value": "DCCB-CLOUD-NJP-04"
+            },
+            {
+              "name": "Network",
+              "value": "dvPort-vlan25-Data-Internal (dvSwitch1)"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "UserDataCenterName",
+              "value": "NJ-POP-CLOUD"
+            }
+          ]
+        }
+

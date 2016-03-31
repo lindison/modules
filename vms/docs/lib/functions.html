@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='content-type' content='text/html;charset=utf-8'>
+    <title>functions.sh</title>
+    <link rel="stylesheet" media="all" href="http://jashkenas.github.io/docco/resources/linear/public/stylesheets/normalize.css" />
+    <link rel="stylesheet" media="all" href="http://jashkenas.github.io/docco/resources/linear/docco.css" />
+</head>
+<body>
+<div class="container">
+  <div class="page">
+        <div class="header"><h1>functions.sh</h1></div>
+        <p>Shell functions for the vms module.</p>
+
+<span></span><span class="c1"># DIVIDER</span>
+<span class="c1">#/ usage: source RERUN_MODULE_DIR/lib/functions.sh command</span>
+
+<span class="c1"># DIVIDER</span>
+. <span class="nv">$RERUN</span> <span class="o">||</span> <span class="o">{</span>
+    <span class="nb">echo</span> &gt;<span class="p">&amp;</span><span class="m">2</span> <span class="s2">&quot;ERROR: Failed sourcing rerun function library: \&quot;</span><span class="nv">$RERUN</span><span class="s2">\&quot;&quot;</span>
+    <span class="k">return</span> 1
+<span class="o">}</span>
+
+<span class="c1"># DIVIDER</span>
+<span class="o">[[</span> <span class="nv">$#</span> <span class="o">=</span> <span class="m">1</span> <span class="o">]]</span> <span class="o">||</span> rerun_option_usage
+
+<span class="c1"># DIVIDER</span>
+<span class="k">if</span> <span class="o">[[</span> -r <span class="nv">$RERUN_MODULE_DIR</span>/commands/<span class="nv">$1</span>/options.sh <span class="o">]]</span> 
+<span class="k">then</span>
+    . <span class="nv">$RERUN_MODULE_DIR</span>/commands/<span class="nv">$1</span>/options.sh <span class="o">||</span> <span class="o">{</span>
+        rerun_die <span class="s2">&quot;Failed loading options parser.&quot;</span>
+    <span class="o">}</span>
+<span class="k">fi</span>
+
+<span class="c1"># DIVIDER</span>
+
+
+
+
+
+<span class="c1"># DIVIDER</span>
+
+</pre></div>
+
+<p>Read rerun's public functions</p>
+
+</pre></div>
+
+<p>Check usage. Argument should be command name.</p>
+
+</pre></div>
+
+<p>Source the option parser script.</p>
+
+</pre></div>
+
+<hr />
+
+<p>Your functions declared here.</p>
+
+<hr />
+
+</pre></div>
+
+</pre></div>
+</pre></div>
+  </div>
+  <div class="fleur">h</div>
+
+</div>
+</body>
+</html>

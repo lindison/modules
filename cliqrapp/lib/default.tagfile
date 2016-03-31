@@ -1,0 +1,24 @@
+{
+"cloudParams": {
+          "cloud": "CLOUD",
+          "instance":"STTYPE",
+          "cloudProperties": [
+            {
+              "name": "UserClusterName",
+              "value": "CLUSTER"
+            },
+            {
+              "name": "Network",
+              "value": "NETWORK"
+            },
+            {
+              "name": "attachPublicIP",
+              "value": "true"
+            },
+            {
+              "name": "UserDataCenterName",
+              "value": "DATACENTER"
+            }
+          ]
+        }
+}

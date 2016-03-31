@@ -1,0 +1,288 @@
+.TH cliqrapp 1 "Thu Jul 30 18:20:14 GMT 2015" "Version 1.0.31" "RERUN User Manual" 
+.SH NAME
+cliqrapp \- start/stop apps with dependency cheking
+.PP
+.SH SYNOPSIS
+.PP
+\f[CR] 
+rerun [ARGS] cliqrapp: [ apps | delete | deleteallnotrunnig | get-ssh-key | jobs | select | start | stop | wait ] [OPTIONS]
+\f[]
+
+.SH COMMANDS
+.SH cliqrapp:apps \f[][--appid <>] [--shownameonly <no>] [--version <>]
+
+list apps
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--appid \f[]appids\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--shownameonly \f[]Show the name to be used by start\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.TP
+.B \--version \f[]info on specefi version only\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.SH cliqrapp:delete \f[][--id <>]
+
+delete/remove deployment
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--id \f[]job id to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.SH cliqrapp:deleteallnotrunnig \f[][--force <no>]
+
+Stop all Errored,Canceled and Stopped jobs from deploymeent
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--force \f[]to really delete all Errored jobs\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.SH cliqrapp:get-ssh-key \f[]
+
+get the ssh key from gui
+.PP
+\f[I]OPTIONS\f[]
+
+.SH cliqrapp:jobs \f[][--env_name <>] [--appid <>] [--quiet <no>] [--status <active>] [--getipfornode <>] [--id <>]
+
+list jobs runing
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--env_name \f[]env_name to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--appid \f[]appids\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--quiet \f[]used for finding a job running\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.TP
+.B \--status \f[]define the satus to use of show active\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]active\f[]
+.RS
+.RE
+.TP
+.B \--getipfornode \f[]Shows IP for a node in a jobid.\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--id \f[]job id to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.SH cliqrapp:select \f[]
+
+selects the current cliqr.sh
+.PP
+\f[I]OPTIONS\f[]
+
+.SH cliqrapp:start \f[][--runname <>] [--env_name <>] [--ClusterName <>] [--type <m1.medium>] --wait <no> [--job_list <>]: list of jobs example '169:m1.medium 168:m1.medium 167 [--fmwbaseappid <678>] [--fmwdepend <no>] [--environment <PI>]: Deployment Environment [--cloud <DTV_AWS_DevPI-us-west-2>] [--subnet <subnet-02bf4e5b>] [--vpc <vpc-82a873e7>] [--vip_pool <updawebpi-aws_POOL>] --cloud_tag <VMWEE> [--version <>] [--debug <no>] [--fmw_job_list <>] [--fmwinfo <>]: adm:wlpw [--env_pairs <>] [--appid <>]
+
+submit a job to ccm
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--runname \f[]this is a run name and cannot be deleted defaults to appName dattime\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--env_name \f[]env_name to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--ClusterName \f[]ClusterName environment var\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--type \f[]instance type\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]m1.medium\f[]
+.RS
+.RE
+.TP
+.B \--wait \f[]time to wait\f[]
+required: \f[I]true\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.TP
+.B \--job_list \f[]list of jobs example '169:m1.medium 168:m1.medium 167:m3.large'\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--fmwbaseappid \f[]FMWBaseDomain base app id.\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]678\f[]
+.RS
+.RE
+.TP
+.B \--fmwdepend \f[]yes if start a domin if not there\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.TP
+.B \--environment \f[]Deployment Environment: PI,PRO,E2E\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]PI\f[]
+.RS
+.RE
+.TP
+.B \--cloud \f[]cloud name such as DTV_AWS_DevPI-us-west-2 amazon zone\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]DTV_AWS_DevPI-us-west-2\f[]
+.RS
+.RE
+.TP
+.B \--subnet \f[]subnet 10.223.0 is subnet-bdb060ca subnet-02bf4e5b=10.223.2\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]subnet-02bf4e5b\f[]
+.RS
+.RE
+.TP
+.B \--vpc \f[]vpc-82a873e7 is the one we have now\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]vpc-82a873e7\f[]
+.RS
+.RE
+.TP
+.B \--vip_pool \f[]if ther is a VIP POOL\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]updawebpi-aws_POOL\f[]
+.RS
+.RE
+.TP
+.B \--cloud_tag \f[]combind clud config for each environmnet\f[]
+required: \f[I]true\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]VMWEE\f[]
+.RS
+.RE
+.TP
+.B \--version \f[]info on specefi version only\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--debug \f[]instance will not stop if there are errors.\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE
+.TP
+.B \--fmw_job_list \f[]joblist to pass to FMW\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--fmwinfo \f[]adm:wlpw:nmpw\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--env_pairs \f[]comma seperated pairs like v=tt,v2=ty\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--appid \f[]appids\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.SH cliqrapp:stop \f[][--id <>]
+
+stop
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--id \f[]job id to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.SH cliqrapp:wait \f[][--id <>] --wait <no>
+
+wait for a jobid to finish
+.PP
+\f[I]OPTIONS\f[]
+.TP
+.B \--id \f[]job id to find\f[]
+required: \f[I]false\f[] ,
+arguments: \f[I]true\f[]
+.RS
+.RE
+.TP
+.B \--wait \f[]time to wait\f[]
+required: \f[I]true\f[] ,
+arguments: \f[I]true\f[]
+, default: \f[I]no\f[]
+.RS
+.RE ; # command section done.
+
+.SH RETURN VALUES
+.PP
+Successful completion: 0
+.SH AUTHORS
+d515449
+.SH "SEE ALSO"
+rerun
+.SH KEYWORDS
+cliqrapp

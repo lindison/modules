@@ -1,0 +1,7 @@
+# -*- Mode: Shell-script; ***
+#/ rerun-metadata: module
+NAME=stubbs
+DESCRIPTION="Simple rerun module builder"
+VERSION=1.3.0
+REQUIRES=
+EXTERNALS=rpm-build

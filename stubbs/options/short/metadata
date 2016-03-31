@@ -1,0 +1,7 @@
+NAME=short
+DESCRIPTION="short option name"
+ARGUMENTS=true
+REQUIRED=false
+DEFAULT=
+SHORT=
+RANGE=

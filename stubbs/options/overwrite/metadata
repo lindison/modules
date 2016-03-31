@@ -1,0 +1,7 @@
+NAME=overwrite
+DESCRIPTION="should overwrite?"
+ARGUMENTS=true
+REQUIRED=false
+DEFAULT=false
+SHORT=
+RANGE="{true,false}"
