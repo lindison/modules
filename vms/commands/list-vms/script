@@ -16,20 +16,24 @@ rerun_options_parse "$@"
 # Command implementation
 # ----------------------
 
-ECHO "Running VirtualBox VMs"
+echo "Running VirtualBox VMs"
 vboxmanage list runningvms
 
-ECHO " "
-ECHO "All VirtualBox VMs"
+echo " "
+echo "All VirtualBox VMs"
 vboxmanage list vms
 
-ECHO " "
-ECHO "All Vagrant VMs"
+echo " "
+echo "All Vagrant VMs"
 vagrant global-status
 
-ECHO " "
-ECHO "Free Memory"
+echo " "
+echo "Free Memory"
 python ~/memReport.py
+
+echo " "
+echo "Disk Usage"
+df -h
 
 # - - -
 # Put the command implementation here.
